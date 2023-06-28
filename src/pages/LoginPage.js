@@ -26,7 +26,7 @@ function LoginPage(props) {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
-
+ 
     // axios.post(`${API_URL}/auth/login`, requestBody)
  
     authService.login(requestBody)  //  <=== UPDATE
@@ -42,23 +42,6 @@ function LoginPage(props) {
     	})
   };
  
-    axios.post(`${API_URL}/auth/login`, requestBody)
-      .then((response) => {
-        console.log('JWT token', response.data.authToken );
-      
-        // Save the token in the localStorage.      
-        storeToken(response.data.authToken);
-        
-        // Verify the token by sending a request 
-        // to the server's JWT validation endpoint. 
-        authenticateUser();                     // <== ADD
-        navigate('/');
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      })
-  };
   
   return (
     <div className="LoginPage">
@@ -89,6 +72,6 @@ function LoginPage(props) {
       <Link to={"/signup"}> Sign Up</Link>
     </div>
   )
-
+}
  
 export default LoginPage;

@@ -1,10 +1,8 @@
+import authService from "./../services/auth.service"; // <== IMPORT
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const API_URL = "http://localhost:5005";
-import authService from "./../services/auth.service"; // <== IMPORT
- 
- 
 
+const API_URL = "http://localhost:5005";
 
 const AuthContext = React.createContext();
  
@@ -20,7 +18,7 @@ function AuthProviderWrapper(props) {
     
     const authenticateUser = () => { 
        const storedToken = localStorage.getItem("authToken");   
-    }
+    
 
     if (storedToken) {
       // axios.get(
@@ -47,6 +45,7 @@ function AuthProviderWrapper(props) {
       setUser(null);
     }
   }
+  
     
     const removeToken = () => {                    // <== ADD
       // Upon logout, remove the token from the localStorage
@@ -65,7 +64,6 @@ function AuthProviderWrapper(props) {
     useEffect(() => {
       authenticateUser();
     }, []);
-   
     
     return (                                                   
       <AuthContext.Provider
@@ -81,7 +79,7 @@ function AuthProviderWrapper(props) {
         {props.children}
       </AuthContext.Provider>
     )
-    
+  }
   
    
   export { AuthProviderWrapper, AuthContext };

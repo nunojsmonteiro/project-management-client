@@ -21,34 +21,25 @@ function SignupPage(props) {
   
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // Create an object representing the request body
+ 
     const requestBody = { email, password, name };
  
- // axios.post(`${API_URL}/auth/signup`, requestBody)
+    // axios.post(`${API_URL}/auth/signup`, requestBody)
  
- authService.signup(requestBody)  //  <=== UPDATE
- .then((response) => {
-   navigate("/login");
- })
- .catch((error) => {
-   const errorDescription = error.response.data.message;
-   setErrorMessage(errorDescription);
- })
-};
-
-    // Make an axios request to the API
-    // If the POST request is a successful redirect to the login page
-    // If the request resolves with an error, set the error message in the state
-    axios.post(`${API_URL}/auth/signup`, requestBody)
+    authService.signup(requestBody)  //  <=== UPDATE
       .then((response) => {
-        navigate('/login');
+        navigate("/login");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       })
   };
-  
+
+    // Make an axios request to the API
+    // If the POST request is a successful redirect to the login page
+    // If the request resolves with an error, set the error message in the state
+    
   return (
     <div className="SignupPage">
       <h1>Sign Up</h1>
@@ -87,6 +78,6 @@ function SignupPage(props) {
       <Link to={"/login"}> Login</Link>
     </div>
   )
-
+}
  
 export default SignupPage;
